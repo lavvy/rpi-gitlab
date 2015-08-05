@@ -1,5 +1,5 @@
-FROM sameersbn/ubuntu:14.04.20150805
-MAINTAINER sameer@damagehead.com
+FROM resin/rpi-raspbian
+MAINTAINER Marcel Grossmann <whatever4711@gmail.com>
 
 ENV GITLAB_VERSION=7.13.3 \
     GITLAB_SHELL_VERSION=2.6.3 \
