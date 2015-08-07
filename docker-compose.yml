@@ -1,5 +1,5 @@
 postgresql:
-        image: whatever4711/rpi-postgresql
+  image: whatever4711/rpi-postgresql
   environment:
     - DB_USER=gitlab
     - DB_PASS=password
@@ -7,7 +7,7 @@ postgresql:
   volumes:
     - /srv/docker/gitlab/postgresql:/var/lib/postgresql
 gitlab:
-        image: whatever4711/rpi-gitlab
+  image: whatever4711/rpi-gitlab
   links:
     - redis:redisio
     - postgresql:postgresql
@@ -35,6 +35,6 @@ gitlab:
   volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data
 redis:
-        image: whatever4711/rpi-redis
+  image: whatever4711/rpi-redis
   volumes:
     - /srv/docker/gitlab/redis:/var/lib/redis

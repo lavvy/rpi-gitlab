@@ -1,24 +1,24 @@
 #!/bin/bash
 set -e
 
-GEM_CACHE_DIR="${SETUP_DIR}/cache"
-
-# rebuild apt cache
-apt-get update
-
-# install build dependencies for gem installation
-apt-get install -y gcc g++ make patch pkg-config cmake \
-  libc6-dev ruby2.1-dev \
-  libmysqlclient-dev libpq-dev zlib1g-dev libyaml-dev libssl-dev \
-  libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
-  libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev
-
-# remove the host keys generated during openssh-server installation
-rm -rf /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub
-
-# add ${GITLAB_USER} user
-adduser --disabled-login --gecos 'GitLab' ${GITLAB_USER}
-passwd -d ${GITLAB_USER}
+# GEM_CACHE_DIR="${SETUP_DIR}/cache"
+# 
+# # rebuild apt cache
+# apt-get update
+# 
+# # install build dependencies for gem installation
+# apt-get install -y gcc g++ make patch pkg-config cmake \
+	#   libc6-dev ruby2.1-dev \
+	#   libmysqlclient-dev libpq-dev zlib1g-dev libyaml-dev libssl-dev \
+	#   libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
+	#   libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev
+# 
+# # remove the host keys generated during openssh-server installation
+# rm -rf /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub
+# 
+# # add ${GITLAB_USER} user
+# adduser --disabled-login --gecos 'GitLab' ${GITLAB_USER}
+# passwd -d ${GITLAB_USER}
 
 # set PATH (fixes cron job PATH issues)
 cat >> ${GITLAB_HOME}/.profile <<EOF
@@ -38,7 +38,7 @@ sudo -HEu ${GITLAB_USER} git config --global core.autocrlf input
 # install gitlab-shell
 echo "Cloning gitlab-shell v.${GITLAB_SHELL_VERSION}..."
 sudo -u git -H git clone -q -b v${GITLAB_SHELL_VERSION} --depth 1 \
-  https://github.com/gitlabhq/gitlab-shell.git ${GITLAB_SHELL_INSTALL_DIR}
+	https://github.com/gitlabhq/gitlab-shell.git ${GITLAB_SHELL_INSTALL_DIR}
 
 cd ${GITLAB_SHELL_INSTALL_DIR}
 sudo -u git -H cp -a config.yml.example config.yml
@@ -47,7 +47,7 @@ sudo -u git -H ./bin/install
 # shallow clone gitlab-ce
 echo "Cloning gitlab-ce v.${GITLAB_VERSION}..."
 sudo -HEu ${GITLAB_USER} git clone -q -b v${GITLAB_VERSION} --depth 1 \
-  https://github.com/gitlabhq/gitlabhq.git ${GITLAB_INSTALL_DIR}
+	https://github.com/gitlabhq/gitlabhq.git ${GITLAB_INSTALL_DIR}
 
 cd ${GITLAB_INSTALL_DIR}
 
@@ -87,10 +87,27 @@ sudo -HEu ${GITLAB_USER} ln -s ${GITLAB_DATA_DIR}/uploads public/uploads
 rm -rf .secret
 sudo -HEu ${GITLAB_USER} ln -sf ${GITLAB_DATA_DIR}/.secret
 
+# install gems
+gem install actionview
+gem install activesupport
+gem install autoprefixer-rails 
+gem install nokogiri
+gem install i18n
+gem install rack
+gem install activemodel
+gem install execjs
+gem install rails-observers
+gem install rack
+gem install sass
+gem install builder
+gem install RedCloth
+gem install actionmailer
+
+
 # install gems required by gitlab, use local cache if available
 if [[ -d ${GEM_CACHE_DIR} ]]; then
-  mv ${GEM_CACHE_DIR} vendor/
-  chown -R ${GITLAB_USER}:${GITLAB_USER} vendor/cache
+	mv ${GEM_CACHE_DIR} vendor/
+	chown -R ${GITLAB_USER}:${GITLAB_USER} vendor/cache
 fi
 sudo -HEu ${GITLAB_USER} bundle install -j$(nproc) --deployment --without development test aws
 
@@ -125,52 +142,52 @@ sed 's|error_log /var/log/nginx/error.log;|error_log '"${GITLAB_LOG_DIR}"'/nginx
 # configure supervisord log rotation
 cat > /etc/logrotate.d/supervisord <<EOF
 ${GITLAB_LOG_DIR}/supervisor/*.log {
-  weekly
-  missingok
-  rotate 52
-  compress
-  delaycompress
-  notifempty
-  copytruncate
+weekly
+missingok
+rotate 52
+compress
+delaycompress
+notifempty
+copytruncate
 }
 EOF
 
 # configure gitlab log rotation
 cat > /etc/logrotate.d/gitlab <<EOF
 ${GITLAB_LOG_DIR}/gitlab/*.log {
-  weekly
-  missingok
-  rotate 52
-  compress
-  delaycompress
-  notifempty
-  copytruncate
+weekly
+missingok
+rotate 52
+compress
+delaycompress
+notifempty
+copytruncate
 }
 EOF
 
 # configure gitlab-shell log rotation
 cat > /etc/logrotate.d/gitlab-shell <<EOF
 ${GITLAB_LOG_DIR}/gitlab-shell/*.log {
-  weekly
-  missingok
-  rotate 52
-  compress
-  delaycompress
-  notifempty
-  copytruncate
+weekly
+missingok
+rotate 52
+compress
+delaycompress
+notifempty
+copytruncate
 }
 EOF
 
 # configure gitlab vhost log rotation
 cat > /etc/logrotate.d/gitlab-nginx <<EOF
 ${GITLAB_LOG_DIR}/nginx/*.log {
-  weekly
-  missingok
-  rotate 52
-  compress
-  delaycompress
-  notifempty
-  copytruncate
+weekly
+missingok
+rotate 52
+compress
+delaycompress
+notifempty
+copytruncate
 }
 EOF
 
@@ -196,18 +213,18 @@ priority=10
 directory=${GITLAB_INSTALL_DIR}
 environment=HOME=${GITLAB_HOME}
 command=bundle exec sidekiq -c {{SIDEKIQ_CONCURRENCY}}
-  -q post_receive
-  -q mailer
-  -q archive_repo
-  -q system_hook
-  -q project_web_hook
-  -q gitlab_shell
-  -q common
-  -q default
-  -e ${RAILS_ENV}
-  -t {{SIDEKIQ_SHUTDOWN_TIMEOUT}}
-  -P ${GITLAB_INSTALL_DIR}/tmp/pids/sidekiq.pid
-  -L ${GITLAB_INSTALL_DIR}/log/sidekiq.log
+-q post_receive
+-q mailer
+-q archive_repo
+-q system_hook
+-q project_web_hook
+-q gitlab_shell
+-q common
+-q default
+-e ${RAILS_ENV}
+-t {{SIDEKIQ_SHUTDOWN_TIMEOUT}}
+-P ${GITLAB_INSTALL_DIR}/tmp/pids/sidekiq.pid
+-L ${GITLAB_INSTALL_DIR}/log/sidekiq.log
 user=git
 autostart=true
 autorestart=true
@@ -255,11 +272,11 @@ stderr_logfile=${GITLAB_LOG_DIR}/supervisor/%(program_name)s.log
 EOF
 
 # purge build dependencies
-apt-get purge -y --auto-remove gcc g++ make patch pkg-config cmake \
-  libc6-dev ruby2.1-dev \
-  libmysqlclient-dev libpq-dev zlib1g-dev libyaml-dev libssl-dev \
-  libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
-  libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev
-
-# cleanup
-rm -rf /var/lib/apt/lists/*
+# apt-get purge -y --auto-remove gcc g++ make patch pkg-config cmake \
+	#   libc6-dev ruby2.1-dev \
+	#   libmysqlclient-dev libpq-dev zlib1g-dev libyaml-dev libssl-dev \
+	#   libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
+	#   libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev
+# 
+# # cleanup
+# rm -rf /var/lib/apt/lists/*
