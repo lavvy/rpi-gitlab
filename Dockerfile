@@ -44,8 +44,9 @@ RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX \
  && locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales 
 
-RUN ln -s /usr/bin/gem2.1 /usr/bin/gem
-RUN ln -s /usr/bin/ruby2.1 /usr/bin/ruby
+RUN ln -s /usr/bin/gem2.1 /usr/bin/gem \
+ && ln -s /usr/bin/ruby2.1 /usr/bin/ruby
+
 RUN gem install --no-document bundler
 
 COPY assets/setup/ ${SETUP_DIR}/
