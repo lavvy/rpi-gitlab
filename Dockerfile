@@ -50,11 +50,27 @@ RUN ln -s /usr/bin/gem2.1 /usr/bin/gem \
 RUN gem install --no-document bundler
 
 COPY assets/setup/ ${SETUP_DIR}/
+USER ${GITLAB_USER}
 RUN bash ${SETUP_DIR}/partI.sh
-RUN gem install actionview activesupport autoprefixer-rails \
- nokogiri i18n rack activemodel execjs rails-observers rack sass \
- builder RedCloth actionmailer erubis mime-types
-
+RUN gem install builder 
+RUN gem install minitest
+RUN gem install activesupport 
+RUN gem install autoprefixer-rails 
+RUN gem install nokogiri 
+RUN gem install i18n 
+RUN gem install rack 
+RUN gem install activemodel 
+RUN gem install execjs 
+RUN gem install rails-observers 
+RUN gem install rack 
+RUN gem install sass 
+RUN gem install RedCloth
+RUN gem install actionmailer
+RUN gem install erubis
+RUN gem install mime-types
+RUN gem install actionview 
+RUN gem install carrierwave
+USER root 
 RUN bash ${SETUP_DIR}/partII.sh
 
 # Clean Up

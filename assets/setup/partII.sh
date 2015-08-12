@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+cd ${GITLAB_INSTALL_DIR}
+
 # install gems required by gitlab, use local cache if available
 if [[ -d ${GEM_CACHE_DIR} ]]; then
 	mv ${GEM_CACHE_DIR} vendor/
