@@ -50,7 +50,12 @@ RUN ln -s /usr/bin/gem2.1 /usr/bin/gem \
 RUN gem install --no-document bundler
 
 COPY assets/setup/ ${SETUP_DIR}/
-RUN bash ${SETUP_DIR}/install.sh
+RUN bash ${SETUP_DIR}/partI.sh
+RUN gem install actionview activesupport autoprefixer-rails \
+ nokogiri i18n rack activemodel execjs rails-observers rack sass \
+ builder RedCloth actionmailer erubis mime-types
+
+RUN bash ${SETUP_DIR}/partII.sh
 
 # Clean Up
 RUN apt-get purge -y --auto-remove gcc g++ make patch pkg-config cmake \
