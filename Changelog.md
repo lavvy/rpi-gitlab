@@ -1,6 +1,301 @@
 # Changelog
 
-This file only reflects the changes that are made in the the docker image. Please refer to the upstream GitLab [CHANGELOG](https://github.com/gitlabhq/gitlabhq/blob/master/CHANGELOG) for the list of changes in GitLab.
+This file only reflects the changes that are made in this image. Please refer to the upstream GitLab [CHANGELOG](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CHANGELOG) for the list of changes in GitLab.
+
+**8.10.2-1**
+- Fix `OAUTH_GOOGLE_RESTRICT_DOMAIN` 
+
+**8.10.2**
+- gitlab: upgrade to CE v8.10.2
+- Improve `OAUTH_GOOGLE_RESTRICT_DOMAIN` for multiple restricted domains
+
+**8.10.1**
+- gitlab: upgrade to CE v8.10.1
+
+**8.10.0**
+- gitlab: upgrade to CE v8.10.0
+
+**8.9.6**
+- gitlab: upgrade to CE v8.9.6
+
+**8.9.5**
+- gitlab: upgrade to CE v8.9.5
+
+**8.9.4**
+- gitlab: upgrade to CE v8.9.4
+
+**8.9.3**
+- gitlab: upgrade to CE v8.9.3
+
+**8.9.2**
+- gitlab: upgrade to CE v8.9.2
+
+**8.9.1**
+- gitlab: upgrade to CE v8.9.1
+
+**8.9.0**
+- gitlab: upgrade to CE v8.9.0
+
+**8.8.5-1**
+- added GitLab Container Registry support
+- added `SSL_CIPHERS` option to change ciphers of the nginx
+
+**8.8.5**
+- gitlab: upgrade to CE v8.8.5
+
+**8.8.4**
+- gitlab: upgrade to CE v8.8.4
+- added `GITLAB_PROJECTS_LIMIT` configuration option
+
+**8.8.3**
+- gitlab: upgrade to CE v8.8.3
+
+**8.8.2**
+- gitlab: upgrade to CE v8.8.2
+
+**8.8.1**
+- gitlab: upgrade to CE v8.8.1
+
+**8.8.0**
+- gitlab: upgrade to CE v8.8.0
+- oauth: exposed `OAUTH_GITHUB_URL` and `OAUTH_GITHUB_VERIFY_SSL` options for users for GitHub Enterprise.
+
+**8.7.6**
+- gitlab: upgrade to CE v8.7.6
+
+**8.7.5**
+- gitlab: upgrade to CE v8.7.5
+
+**8.7.3**
+- gitlab: upgrade to CE v8.7.3
+
+**8.7.2**
+- gitlab: upgrade to CE v8.7.2
+
+**8.7.1**
+- gitlab: upgrade to CE v8.7.1
+
+**8.7.0**
+- gitlab-shell: upgrade to v.2.7.2
+- gitlab: upgrade to CE v8.7.0
+- SSO: `OAUTH_ALLOW_SSO` now specifies a comma separated list of providers.
+- OAuth: Added `OAUTH_EXTERNAL_PROVIDERS` to specify external oauth providers.
+- Exposed `GITLAB_TRUSTED_PROXIES` configuration parameter
+
+**8.6.7**
+- added `GITLAB_SIGNUP_ENABLED` option to enable/disable signups
+- gitlab: upgrade to CE v8.6.7
+
+**8.6.6**
+- gitlab: upgrade to CE v8.6.6
+
+**8.6.5**
+- gitlab: upgrade to CE v8.6.5
+
+**8.6.4**
+- gitlab: upgrade to CE v8.6.4
+
+**8.6.3**
+- gitlab-shell: upgrade to v.2.6.12
+- gitlab: upgrade to CE v8.6.3
+
+**8.6.2**
+- gitlab: upgrade to CE v8.6.2
+
+**8.6.1**
+- gitlab: upgrade to CE v8.6.1
+
+**8.6.0**
+- gitlab-shell: upgrade to v.2.6.11
+- gitlab-workhorse: upgrade to v0.7.1
+- gitlab: upgrade to CE v8.6.0
+- exposed configuration parameters for auth0 OAUTH support
+- fixed relative_url support
+
+**8.5.8**
+- gitlab: upgrade to CE v8.5.8
+
+**8.5.7**
+- gitlab: upgrade to CE v8.5.7
+
+**8.5.5**
+- gitlab: upgrade to CE v8.5.5
+
+**8.5.4**
+- gitlab: upgrade to CE v8.5.4
+
+**8.5.3**
+- gitlab: upgrade to CE v8.5.3
+
+**8.5.1**
+- gitlab: upgrade to CE v8.5.1
+
+**8.5.0**
+- gitlab-workhorse: upgrade to v0.6.4
+- gitlab: upgrade to CE v8.5.0
+- firstrun: expose `GITLAB_ROOT_EMAIL` configuration option
+- expose `OAUTH_AUTO_LINK_SAML_USER` configuration parameter
+
+**8.4.4**
+- gitlab: upgrade to CE v8.4.4
+
+**8.4.3**
+- gitlab: upgrade to CE v8.4.3
+
+**8.4.2**
+- gitlab-workhorse: upgrade to v0.6.2
+- gitlab: upgrade to CE v8.4.2
+
+**8.4.1**
+- gitlab: upgrade to CE v8.4.1
+
+**8.4.0-1**
+- `assets:precompile` moved back to build time
+
+**8.4.0**
+- gitlab-shell: upgrade to v.2.6.10
+- gitlab-workhorse: upgrade to v0.6.1
+- gitlab: upgrade to CE v8.4.0
+- oauth: expose cas3 oauth configuration options
+- oauth: expose azure oauth configuration options
+- `assets:precompile` executed at runtime
+
+**8.3.4**
+- gitlab-workhorse: upgrade to v0.5.4
+- gitlab: upgrade to CE v8.3.4
+- expose `LDAP_TIMEOUT` configuration parameter
+
+**8.3.2**
+- gitlab: upgrade to CE v8.3.2
+
+**8.3.1**
+- gitlab: upgrade to CE v8.3.1
+
+**8.3.0-1**
+- fixed static asset routing when `GITLAB_RELATIVE_URL_ROOT` is used.
+
+**8.3.0**
+- `envsubst` is now used for updating the configurations
+- renamed config `CA_CERTIFICATES_PATH` to `SSL_CA_CERTIFICATES_PATH`
+- renamed config `GITLAB_HTTPS_HSTS_ENABLED` to `NGINX_HSTS_ENABLED`
+- renamed config `GITLAB_HTTPS_HSTS_MAXAGE` to `NGINX_HSTS_MAXAGE`
+- renamed config `GITLAB_BACKUPS` to `GITLAB_BACKUP_SCHEDULE`
+- gitlab-workhorse: upgrade to v0.5.1
+- gitlab: upgrade to CE v8.3.0
+- expose `GITLAB_MAX_OBJECT_SIZE` configuration parameter
+- removed `NGINX_MAX_UPLOAD_SIZE` configuration parameter
+- gitlab-shell: upgrade to v.2.6.9
+
+**8.2.3**
+- fixed static asset routing when `GITLAB_RELATIVE_URL_ROOT` is used.
+- added `GITLAB_BACKUP_PG_SCHEMA` configuration parameter
+- gitlab: upgrade to CE v8.2.3
+
+**8.2.2**
+- added `GITLAB_DOWNLOADS_DIR` configuration parameter
+- `DB_TYPE` parameter renamed to `DB_ADAPTER` with `mysql2` and `postgresql` as accepted values
+- exposed `DB_ENCODING` parameter
+- gitlab: upgrade to CE v8.2.2
+
+**8.2.1-1**
+- fixed typo while setting the value of `GITLAB_ARTIFACTS_DIR`
+
+**8.2.1**
+- expose rack_attack configuration options
+- gitlab-shell: upgrade to v.2.6.8
+- gitlab: upgrade to CE v8.2.1
+- added `GITLAB_ARTIFACTS_ENABLED` configuration parameter
+- added `GITLAB_ARTIFACTS_DIR` configuration parameter
+
+**8.2.0**
+- gitlab-shell: upgrade to v.2.6.7
+- gitlab-workhorse: upgrade to v.0.4.2
+- gitlab: upgrade to CE v8.2.0
+- added `GITLAB_SHARED_DIR` configuration parameter
+- added `GITLAB_LFS_OBJECTS_DIR` configuration parameter
+- added `GITLAB_PROJECTS_BUILDS` configuration parameter
+- added `GITLAB_LFS_ENABLED` configuration parameter
+
+**8.1.4**
+- gitlab: upgrade to CE v8.1.4
+
+**8.1.3**
+- proper long-term fix for http/https cloning when `GITLAB_RELATIVE_URL_ROOT` is used
+- gitlab: upgrade to CE v8.1.3
+- Expose Facebook OAUTH configuration parameters
+
+**8.1.2**
+- gitlab: upgrade to CE v8.1.2
+- removed `GITLAB_SATELLITES_TIMEOUT` configuration parameter
+
+**8.1.0-2**
+- Recompile assets when `GITLAB_RELATIVE_URL_ROOT` is used Fixes #481
+
+**8.1.0-1**
+- temporary fix for http/https cloning when `GITLAB_RELATIVE_URL_ROOT` is used
+
+**8.1.0**
+- gitlab: upgrade to CE v8.1.0
+- gitlab-git-http-server: upgrade to v0.3.0
+
+**8.0.5-1**
+- speed up container startup by compiling assets at image build time
+- test connection to redis-server
+
+**8.0.5**
+- gitlab: upgrade to CE v.8.0.5
+
+**8.0.4-2**
+- fix http/https cloning when `GITLAB_RELATIVE_URL_ROOT` is used
+- allow user to override `OAUTH_ENABLED` setting
+
+**8.0.4-1**
+- update baseimage to `sameersbn/ubuntu:14.04.20151011`
+
+**8.0.4**
+- gitlab: upgrade to CE v.8.0.4
+
+**8.0.3**
+- gitlab: upgrade to CE v.8.0.3
+
+**8.0.2**
+- gitlab: upgrade to CE v.8.0.2
+- added `IMAP_STARTTLS` parameter, defaults to `false`
+- expose oauth parameters for crowd server
+
+**8.0.0**
+- set default value of `DB_TYPE` to `postgres`
+- added sample Kubernetes rc and service description files
+- expose `GITLAB_BACKUP_ARCHIVE_PERMISSIONS` parameter
+- gitlab: upgrade to CE v.8.0.0
+- added `GITLAB_SECRETS_DB_KEY_BASE` parameter
+- added `GITLAB_NOTIFY_ON_BROKEN_BUILDS` and `GITLAB_NOTIFY_PUSHER` parameters
+- added options to email IMAP and reply by email feature
+- set value of `GITLAB_EMAIL` to `SMTP_USER` if defined, else default to `example@example.com`
+- removed `GITLAB_ROBOTS_OVERRIDE` parameter. Override default `robots.txt` if `GITLAB_ROBOTS_PATH` exists.
+- added CI redirection using `GITLAB_CI_HOST` parameter
+
+**7.14.3**
+- gitlab: upgrade to CE v.7.14.3
+
+**7.14.2**
+- Apply grsecurity policies to nodejs binary #394
+- Fix broken emojis post migration #196
+- gitlab-shell: upgrade to v.2.6.5
+- gitlab: upgrade to CE v.7.14.2
+
+**7.14.1**
+- gitlab: upgrade to CE v.7.14.1
+
+**7.14.0**
+- gitlab-shell: upgrade to v.2.6.4
+- gitlab: upgrade to CE v.7.14.0
+
+**7.13.5**
+- gitlab: upgrade to CE v.7.13.5
+
+**7.13.4**
+- gitlab: upgrade to CE v.7.13.4
 
 **7.13.3**
 - gitlab: upgrade to CE v.7.13.3
