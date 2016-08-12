@@ -16,11 +16,11 @@ services:
     #image: sameersbn/postgresql:9.4-24
     volumes:
     - /srv/docker/gitlab/postgresql:/var/lib/postgresql:Z
-    environment:
-    - DB_USER=gitlab
-    - DB_PASS=password
-    - DB_NAME=gitlabhq_production
-    - DB_EXTENSION=pg_trgm
+    #environment:
+    #- DB_USER=gitlab
+    #- DB_PASS=password
+    #- DB_NAME=gitlabhq_production
+    #- DB_EXTENSION=pg_trgm
 
   gitlab:
     restart: always
@@ -30,72 +30,61 @@ services:
     - redis
     - postgresql
     ports:
-    - "10080:80"
-    - "10022:22"
+    - "10080:10080"
+    - "10022:10022"
     volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data:Z
     environment:
-    - DEBUG=false
-
+    - DEBUG=true
     - DB_ADAPTER=postgresql
     - DB_HOST=postgresql
     - DB_PORT=5432
-    - DB_USER=gitlab
-    - DB_PASS=password
-    - DB_NAME=gitlabhq_production
-
+    - DB_USER=app
+    - DB_PASS=pgpass
+    - DB_NAME=app
     - REDIS_HOST=redis
     - REDIS_PORT=6379
-
     - TZ=Asia/Kolkata
     - GITLAB_TIMEZONE=Kolkata
-
     - GITLAB_HTTPS=false
     - SSL_SELF_SIGNED=false
-
     - GITLAB_HOST=localhost
     - GITLAB_PORT=10080
     - GITLAB_SSH_PORT=10022
-    - GITLAB_RELATIVE_URL_ROOT=
+    #- GITLAB_RELATIVE_URL_ROOT=
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
-
-    - GITLAB_ROOT_PASSWORD=
-    - GITLAB_ROOT_EMAIL=
-
+    # Please edit
+    - GITLAB_ROOT_PASSWORD=test
+    - GITLAB_ROOT_EMAIL=test
     - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
     - GITLAB_NOTIFY_PUSHER=false
-
     - GITLAB_EMAIL=notifications@example.com
     - GITLAB_EMAIL_REPLY_TO=noreply@example.com
     - GITLAB_INCOMING_EMAIL_ADDRESS=reply@example.com
-
     - GITLAB_BACKUP_SCHEDULE=daily
     - GITLAB_BACKUP_TIME=01:00
-
     - SMTP_ENABLED=false
-    - SMTP_DOMAIN=www.example.com
-    - SMTP_HOST=smtp.gmail.com
-    - SMTP_PORT=587
-    - SMTP_USER=mailer@example.com
-    - SMTP_PASS=password
-    - SMTP_STARTTLS=true
-    - SMTP_AUTHENTICATION=login
-
+    #- SMTP_DOMAIN=www.example.com
+    #- SMTP_HOST=smtp.gmail.com
+    #- SMTP_PORT=587
+    #- SMTP_USER=mailer@example.com
+    #- SMTP_PASS=password
+    #- SMTP_STARTTLS=true
+    #- SMTP_AUTHENTICATION=login
     - IMAP_ENABLED=false
-    - IMAP_HOST=imap.gmail.com
-    - IMAP_PORT=993
-    - IMAP_USER=mailer@example.com
-    - IMAP_PASS=password
-    - IMAP_SSL=true
-    - IMAP_STARTTLS=false
-
+    #- IMAP_HOST=imap.gmail.com
+    #- IMAP_PORT=993
+    #- IMAP_USER=mailer@example.com
+    #- IMAP_PASS=password
+    #- IMAP_SSL=true
+    #- IMAP_STARTTLS=false
     - OAUTH_ENABLED=false
-    - OAUTH_AUTO_SIGN_IN_WITH_PROVIDER=
-    - OAUTH_ALLOW_SSO=
-    - OAUTH_BLOCK_AUTO_CREATED_USERS=true
-    - OAUTH_AUTO_LINK_LDAP_USER=false
-    - OAUTH_AUTO_LINK_SAML_USER=false
-    - OAUTH_EXTERNAL_PROVIDERS=
+    #- OAUTH_AUTO_SIGN_IN_WITH_PROVIDER=
+    #- OAUTH_ALLOW_SSO=
+    #- OAUTH_BLOCK_AUTO_CREATED_USERS=true
+    #- OAUTH_AUTO_LINK_LDAP_USER=false
+    #- OAUTH_AUTO_LINK_SAML_USER=false
+    #- OAUTH_EXTERNAL_PROVIDERS=
 
     - OAUTH_CAS3_LABEL=cas3
     - OAUTH_CAS3_SERVER=

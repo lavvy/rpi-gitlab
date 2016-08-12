@@ -55,8 +55,10 @@ RUN ln -s /usr/bin/gem2.1 /usr/bin/gem \
 
 COPY assets/build/ ${GITLAB_BUILD_DIR}/
 RUN sed -i 's#https://storage.googleapis.com/golang/go${GOLANG_VERSION}.linux-amd64.tar.gz#http://dave.cheney.net/paste/go${GOLANG_VERSION}.linux-arm.tar.gz#g' ${GITLAB_BUILD_DIR}/install.sh \
- && sed -i sed 's#go${GOLANG_VERSION}.linux-amd64.tar.gz#go${GOLANG_VERSION}.linux-arm.tar.gz#g' ${GITLAB_BUILD_DIR}/install.sh
+ && sed -i 's#go${GOLANG_VERSION}.linux-amd64.tar.gz#go${GOLANG_VERSION}.linux-arm.tar.gz#g' ${GITLAB_BUILD_DIR}/install.sh
 
+RUN apt-get update && apt-get upgrade -y && apt-get install -y libpam-krb5 libkrb5-dev
+RUN gem install timfel-krb5-auth -v '0.8.3'
 RUN bash ${GITLAB_BUILD_DIR}/install.sh
 
 COPY assets/runtime/ ${GITLAB_RUNTIME_DIR}/
